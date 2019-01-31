@@ -27,8 +27,11 @@ export class AppComponent {
   onAdd() {
     this.products.push({ id: 5, name: 'Produkt 5' });
   }
-  onRemove(Product){
-let index = this.products.indexOf(Product);
-this.products.splice(index,1);
+  onRemove(Product) {
+    let index = this.products.indexOf(Product);
+    this.products.splice(index, 1);
+  }
+  trackProduct(index, Product) {
+    return Product ? Product.id : undefined;
   }
 }
