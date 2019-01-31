@@ -24,4 +24,11 @@ export class AppComponent {
         )
       : this.products.splice(0, this.products.length);
   }
+  onAdd() {
+    this.products.push({ id: 5, name: 'Produkt 5' });
+  }
+  onRemove(Product){
+let index = this.products.indexOf(Product);
+this.products.splice(index,1);
+  }
 }

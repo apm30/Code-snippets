@@ -34,3 +34,9 @@
     {{i + 1}}: {{product.name}}
   </li>
 </ul>
+<button (click)="onAdd()">Dodaj produkt</button>
+<ul>
+  <li *ngFor="let product of products; index as i">
+    {{i + 1}}: {{product.name}} <button (click)="onRemove(product)">Usuń</button>
+  </li>
+</ul>
