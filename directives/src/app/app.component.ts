@@ -1,5 +1,6 @@
+
 import { Product } from './model/Product';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,9 @@ export class AppComponent {
   ];
 
   viewMode = 'map';
+  @Input()
+  isSelected = false;
+
   addRemoveProducts() {
     this.products.length === 0
       ? this.products.push(
@@ -28,10 +32,14 @@ export class AppComponent {
     this.products.push({ id: 5, name: 'Produkt 5' });
   }
   onRemove(Product) {
-    let index = this.products.indexOf(Product);
+    const index = this.products.indexOf(Product);
     this.products.splice(index, 1);
   }
   trackProduct(index, Product) {
     return Product ? Product.id : undefined;
+  }
+
+  onClick() {
+    this.isSelected = !this.isSelected;
   }
 }
