@@ -22,3 +22,15 @@
     <div *ngSwitchCase="'list'">Widok mapy</div>
     <div *ngSwitchDefault>Brak widoku </div>
 </div>
+<h3>ngFor:</h3>
+<ul>
+  <li *ngFor="let product of products; index as i">
+    {{i + 1}}: {{product.name}}
+  </li>
+</ul>
+<h3>ngFor EVEN:</h3>
+<ul>
+  <li *ngFor="let product of products; index as i; even as isEven" [style.color]="isEven? 'red' : 'blue'">
+    {{i + 1}}: {{product.name}}
+  </li>
+</ul>
