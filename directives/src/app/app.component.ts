@@ -8,6 +8,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'directives';
   products = <any>[1, 2];
+  viewMode = 'map';
   addRemoveProducts() {
     this.products.length === 0
       ? this.products.push(1, 2)

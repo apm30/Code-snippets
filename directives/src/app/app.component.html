@@ -14,10 +14,11 @@
 </div>
 <br>
 <ul class="nav nav-pills">
-  <li><a class="nav-link active" href="">Widok listy</a></li>
-  <li><a class="nav-link" href="">Widok mapy</a></li>
+  <li><a class="nav-link" [class.active]="viewMode == 'map'" (click)="viewMode = 'map'">Widok listy</a></li>
+  <li><a class="nav-link" [class.active]="viewMode == 'list'" (click)="viewMode = 'list'">Widok mapy</a></li>
 </ul>
-<div>
-    <div>Widok listy</div>
-    <div>Widok mapy</div>
+<div [ngSwitch]="viewMode">
+    <div *ngSwitchCase="'map'">Widok listy</div>
+    <div *ngSwitchCase="'list'">Widok mapy</div>
+    <div *ngSwitchDefault>Brak widoku </div>
 </div>
