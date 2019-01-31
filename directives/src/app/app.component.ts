@@ -7,9 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'directives';
-  products = [1,2];
-  addRemoveProducts(){
-    this.products.length === 0? this.products.push(1,2) : this.products.splice(0, this.products.length);
-
+  products = <any>[1, 2];
+  addRemoveProducts() {
+    this.products.length === 0
+      ? this.products.push(1, 2)
+      : this.products.splice(0, this.products.length);
   }
 }
