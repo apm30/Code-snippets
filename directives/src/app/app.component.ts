@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+
+import { Product } from './model/Product';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,11 +9,37 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'directives';
-  products = <any>[1, 2];
+  products: Array<Product> = [
+    { id: 1, name: 'Produkt 1' },
+    { id: 2, name: 'Produkt 2' },
+    { id: 3, name: 'Produkt 3' }
+  ];
+
   viewMode = 'map';
+  @Input()
+  isSelected = false;
+
   addRemoveProducts() {
     this.products.length === 0
-      ? this.products.push(1, 2)
+      ? this.products.push(
+          { id: 1, name: 'Produkt 1' },
+          { id: 2, name: 'Produkt 2' },
+          { id: 3, name: 'Produkt 3' }
+        )
       : this.products.splice(0, this.products.length);
+  }
+  onAdd() {
+    this.products.push({ id: 5, name: 'Produkt 5' });
+  }
+  onRemove(Product) {
+    const index = this.products.indexOf(Product);
+    this.products.splice(index, 1);
+  }
+  trackProduct(index, Product) {
+    return Product ? Product.id : undefined;
+  }
+
+  onClick() {
+    this.isSelected = !this.isSelected;
   }
 }

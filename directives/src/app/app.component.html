@@ -1,24 +1,80 @@
-
-<button (click)="addRemoveProducts()">Dodaj/usun produkty</button>
-<br>
-<div *ngIf="products.length > 0 ; then productsList else noProducts"></div>
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+</head>
+<button (click)="addRemoveProducts()">Dodaj/usun produkty</button> <br />
+<div *ngIf="products.length > 0; then productsList; else noProducts"></div>
 <ng-template #productsList>Lista produktów</ng-template>
 <ng-template #noProducts>Brak produktów</ng-template>
 
 <p>Atrybut Hidden:</p>
-<div [hidden]="products.length == 0">
-    Lista produktów
-</div>
-<div [hidden]="products.length > 0">
-    Brak produktów
-</div>
-<br>
+<div [hidden]="products.length == 0">Lista produktów</div>
+<div [hidden]="products.length > 0">Brak produktów</div>
+<br />
 <ul class="nav nav-pills">
-  <li><a class="nav-link" [class.active]="viewMode == 'map'" (click)="viewMode = 'map'">Widok listy</a></li>
-  <li><a class="nav-link" [class.active]="viewMode == 'list'" (click)="viewMode = 'list'">Widok mapy</a></li>
+  <li>
+    <a
+      class="nav-link"
+      [class.active]="viewMode == 'map'"
+      (click)="viewMode = 'map'"
+      >Widok listy</a
+    >
+  </li>
+  <li>
+    <a
+      class="nav-link"
+      [class.active]="viewMode == 'list'"
+      (click)="viewMode = 'list'"
+      >Widok mapy</a
+    >
+  </li>
 </ul>
 <div [ngSwitch]="viewMode">
-    <div *ngSwitchCase="'map'">Widok listy</div>
-    <div *ngSwitchCase="'list'">Widok mapy</div>
-    <div *ngSwitchDefault>Brak widoku </div>
+  <div *ngSwitchCase="'map'">Widok listy</div>
+  <div *ngSwitchCase="'list'">Widok mapy</div>
+  <div *ngSwitchDefault>Brak widoku</div>
 </div>
+<h3>ngFor:</h3>
+<ul>
+  <li *ngFor="let product of products; index as i">
+    {{ i + 1 }}: {{ product.name }}
+  </li>
+</ul>
+<h3>ngFor EVEN:</h3>
+<ul>
+  <li
+    *ngFor="let product of products; index as i; even as isEven"
+    [style.color]="isEven ? 'red' : 'blue'"
+  >
+    {{ i + 1 }}: {{ product.name }}
+  </li>
+</ul>
+<button (click)="onAdd()">Dodaj produkt</button>
+<ul>
+  <li *ngFor="let product of products; index as i; trackBy: trackProduct">
+    {{ i + 1 }}: {{ product.name }}
+    <button (click)="onRemove(product)">Usuń</button>
+  </li>
+</ul>
+<h3>ngClass: </h3>
+<span
+  class="glyphicon"
+  [class.glyphicon-star]="isSelected"
+  [class.glyphicon-star-empty]="!isSelected"
+  (click)="onClick()"
+>
+</span>
+<br>
+<span
+  class="glyphicon"
+  [ngClass]="{
+    'glyphicon-star': isSelected,
+    'glyphicon-star-empty': !isSelected
+  }"
+  (click)="onClick()"
+>
+</span>
+<h3>Dyrektywa (to lower case): </h3>
+<input type="text" appInputFormat>
